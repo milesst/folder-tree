@@ -1,28 +1,28 @@
 <template lang="">
-    <div 
-        v-if="active" 
-        class="modal-container">
+    <div v-if="active" class="modal-container">
         <div class="modal">
-            <header 
-                v-if="headerText"
-                class="model-header">
+            <header v-if="headerText" class="model-header">
                 {{ headerText }}
             </header>
-            <div
-                class="model-content"
-            >
-                <slot/>            
+            <div class="model-content">
+                <slot />
             </div>
             <footer class="modal-footer">
                 <BaseButton
-                    @click="$emit('select'); active = false" 
+                    @click="
+                        emit('select')
+                        active = false
+                    "
                     text="OK"
                 />
                 <BaseButton
-                    @click="$emit('close'); active = false" 
+                    @click="
+                        emit('close')
+                        active = false
+                    "
                     text="Close"
                 />
-            </footer>   
+            </footer>
         </div>
     </div>
 </template>
@@ -30,12 +30,11 @@
 import BaseButton from './BaseButton.vue'
 
 const emit = defineEmits(['select', 'close'])
-
-const props = defineProps<{
-    headerText?: string
-}>()
 const active = defineModel()
 
+defineProps<{
+    headerText?: string
+}>()
 </script>
 <style scoped>
 .modal-container {

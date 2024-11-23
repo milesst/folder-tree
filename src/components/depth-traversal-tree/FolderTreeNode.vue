@@ -1,31 +1,27 @@
 <template lang="">
     <div
         class="folder-node"
-        :style="{ 'margin-left': (node.depth*2.5)+'rem' }">
-        <div 
-            class="folder-icon" 
-            @click="() => { node.open = !node.open }" >
+        :style="{ 'margin-left': node.depth * 2.5 + 'rem' }"
+    >
+        <div class="folder-icon" @click="emit('open')">
             {{ node.open ? '-' : '+' }}
         </div>
-        <div 
-            @click="emit('select')" 
-            class="folder-name" 
-            :class="selected ? 'selected' : ''">
+        <div
+            @click="emit('select')"
+            class="folder-name"
+            :class="selected ? 'selected' : ''"
+        >
             📁 {{ node.folder.name }}
         </div>
-        <div 
-            v-if="selected" 
-            class="folder-check">
-            ✓
-        </div>
+        <div v-if="selected" class="folder-check">✓</div>
     </div>
 </template>
 <script setup lang="ts">
-import { FolderNode } from '../../types/FolderNode';
+import { FolderNode } from '../../types/FolderNode'
 
-const emit = defineEmits(['select'])
-const props = defineProps<{
-    node: FolderNode,
+const emit = defineEmits(['select', 'open'])
+defineProps<{
+    node: FolderNode
     selected: boolean
 }>()
 </script>

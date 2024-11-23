@@ -2,7 +2,7 @@
     <button>{{ text }}</button>
 </template>
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
     text: string
 }>()
 </script>
