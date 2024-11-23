@@ -1,12 +1,11 @@
 <template lang="">
     <div
-    v-for="folder in data"
-    >
-    <p :style="{ 'margin-left': (depth*2.5)+'rem' }">{{ folder.name }}</p>
-    <FolderTree
-    v-if="depth < maxDepth"
-    :data="folder.children"
-    :depth="depth + 1" ></FolderTree>
+        v-for="folder in data">
+        <p :style="{ 'margin-left': (depth*2.5)+'rem' }">{{ folder.name }}</p>
+        <FolderTree
+            v-if="depth < maxDepth"
+            :data="folder.children"
+            :depth="depth + 1"/>
     </div>  
 </template>
 <script setup lang="ts">
