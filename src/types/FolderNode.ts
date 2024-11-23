@@ -6,5 +6,6 @@ export type FolderNode = {
     depth: number,
     childrenNodes: FolderNode[] | Folder[],
     visited: boolean,
-    open: boolean
+    open: boolean,
+    selected?: boolean
 }

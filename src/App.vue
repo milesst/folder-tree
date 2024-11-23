@@ -1,50 +1,50 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import BaseButton from './components/BaseButton.vue'
 import Modal from './components/Modal.vue'
 import { Folder } from './types/Folder';
-import FolderTree from './components/breadth-traversal-tree/FolderTree.depth-traversal.vue';
+import FolderTree from './components/depth-traversal-tree/FolderTree.depth-traversal.vue';
 
 const modalIsOpen = ref(false)
 const folders = ref<Folder[]>([{
         id: '1',
-        name: 'folder1',
+        name: 'Folder 1',
         children: [
             {
                 id: '4',
-                name: 'folder4'
+                name: 'Folder 4'
             }
         ]
     },
     {
         id: '2',
-        name: 'folder2',
+        name: 'Folder 2',
         children: [
             {
                 id: '5',
-                name: 'folder5',
+                name: 'Folder 6',
                 children: [
                   {
                       id: '9',
-                      name: 'folder9'
+                      name: 'Folder 9'
                   },
                   {
                       id: '10',
-                      name: 'folder10'
+                      name: 'Folder 10'
                   }
                 ]
             },
             {
                 id: '6',
-                name: 'folder6',
+                name: 'Folder 6',
                 children: [
                   {
                       id: '7',
-                      name: 'folder7'
+                      name: 'Folder 7'
                   },
                   {
                       id: '8',
-                      name: 'folder8'
+                      name: 'Folder 8'
                   }
                 ]
             }
@@ -52,10 +52,12 @@ const folders = ref<Folder[]>([{
     },
     {
         id: '3',
-        name: 'folder3'
+        name: 'Folder 3'
     }
 ])
+
 const selectedFolder = ref<Folder | null>(null)
+const selectedFolderId = ref<string | null | any>(null)
 
 const openModal = () => {
   modalIsOpen.value = true
@@ -70,19 +72,14 @@ const openModal = () => {
     />
   </div>
   <Modal
-      :active="modalIsOpen"
-      @close="modalIsOpen = false"
+      v-model="modalIsOpen"
       headerText="Folder Tree"
+      @select="selectedFolderId = selectedFolder?.id"
   >
     <FolderTree
       :data="folders"
-      :selectedFolder="selectedFolder"
-      :depth="0"
-      :maxDepth="10"
+      v-model="selectedFolder"
     />
   </Modal>
+  <p>{{ selectedFolderId ? 'Selected folder id: ' + selectedFolderId : 'No folder selected' }}</p>
 </template>
-
-<style scoped>
-
-</style>
