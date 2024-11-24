@@ -3,9 +3,16 @@
 Test assignment
 
 
-Run project:
+Run production build:
 
 ```
 npm i
 npm run serve
+```
+
+Run development build:
+
+```
+npm i
+npm run dev
 ```
