@@ -28,11 +28,11 @@
 <script setup lang="ts">
 import { FolderNode } from '../../types/FolderNode'
 
-const emit = defineEmits(['select', 'open'])
 defineProps<{
     node: FolderNode
     selected: boolean
 }>()
+const emit = defineEmits(['select', 'open'])
 </script>
 
 <style>

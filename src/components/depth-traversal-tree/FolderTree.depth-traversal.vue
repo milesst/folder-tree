@@ -17,12 +17,11 @@ import { Folder } from '../../types/Folder'
 import { FolderNode } from '../../types/FolderNode'
 import FolderTreeNode from './FolderTreeNode.vue'
 
-const emit = defineEmits(['select'])
-
+const selectedFolder = defineModel()
 const props = defineProps<{
     data: Folder[]
 }>()
-const selectedFolder = defineModel()
+const emit = defineEmits(['select'])
 
 const handleSelect = (folderNode: FolderNode) => {
     if (folderNode.folder === selectedFolder.value) selectedFolder.value = null
