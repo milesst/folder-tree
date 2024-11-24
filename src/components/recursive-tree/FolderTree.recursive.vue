@@ -1,5 +1,8 @@
-<template lang="">
-    <div v-for="folder in data" :key="folder.id">
+<template>
+    <div
+        v-for="folder in data"
+        :key="folder.id"
+    >
         <p :style="{ 'margin-left': depth * 2.5 + 'rem' }">{{ folder.name }}</p>
         <FolderTree
             v-if="depth < maxDepth"
@@ -8,6 +11,7 @@
         />
     </div>
 </template>
+
 <script setup lang="ts">
 import { Folder } from '../../types/Folder'
 
@@ -23,4 +27,3 @@ withDefaults(
     }
 )
 </script>
-<style lang=""></style>

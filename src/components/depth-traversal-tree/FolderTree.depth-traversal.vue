@@ -10,6 +10,7 @@
         />
     </div>
 </template>
+
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { Folder } from '../../types/Folder'
@@ -32,7 +33,7 @@ const handleSelect = (folderNode: FolderNode) => {
 const updateFolderTreeNodes = (folders: Folder[]) => {
     let depth = 0
     const rootNode: FolderNode = {
-        depth: depth++,
+        depth: depth,
         childrenNodes: folders,
         visited: false,
         open: true
@@ -92,6 +93,7 @@ const visibleNodes = computed(() => {
     return resultArray
 })
 </script>
+
 <style scoped>
 .folder-tree-wrap {
     padding: 0.5rem;

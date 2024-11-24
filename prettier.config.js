@@ -3,7 +3,8 @@ const config = {
     tabWidth: 4,
     semi: false,
     singleQuote: true,
-    endOfLine: 'auto'
+    endOfLine: 'auto',
+    singleAttributePerLine: true
 }
 
 export default config

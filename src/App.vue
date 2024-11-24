@@ -6,6 +6,7 @@ import { Folder } from './types/Folder'
 import FolderTree from './components/depth-traversal-tree/FolderTree.depth-traversal.vue'
 
 const modalIsOpen = ref(false)
+
 const folders = ref<Folder[]>([
     {
         id: '1',
@@ -23,7 +24,7 @@ const folders = ref<Folder[]>([
         children: [
             {
                 id: '5',
-                name: 'Folder 6',
+                name: 'Folder 5',
                 children: [
                     {
                         id: '9',
@@ -67,14 +68,20 @@ const openModal = () => {
 
 <template>
     <div>
-        <BaseButton text="Open" @click="openModal" />
+        <BaseButton
+            text="Open"
+            @click="openModal"
+        />
     </div>
     <Modal
         v-model="modalIsOpen"
-        headerText="Folder Tree"
+        header-text="Folder Tree"
         @select="selectedFolderId = selectedFolder?.id"
     >
-        <FolderTree :data="folders" v-model="selectedFolder" />
+        <FolderTree
+            :data="folders"
+            v-model="selectedFolder"
+        />
     </Modal>
     <p>
         {{

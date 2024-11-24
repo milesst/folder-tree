@@ -1,9 +1,12 @@
-<template lang="">
+<template>
     <div
         class="folder-node"
         :style="{ 'margin-left': node.depth * 2.5 + 'rem' }"
     >
-        <div class="folder-icon" @click="emit('open')">
+        <div
+            class="folder-icon"
+            @click="emit('open')"
+        >
             {{ node.open ? '-' : '+' }}
         </div>
         <div
@@ -11,11 +14,17 @@
             class="folder-name"
             :class="selected ? 'selected' : ''"
         >
-            📁 {{ node.folder.name }}
+            📁 {{ node.folder?.name }}
         </div>
-        <div v-if="selected" class="folder-check">✓</div>
+        <div
+            v-if="selected"
+            class="folder-check"
+        >
+            ✓
+        </div>
     </div>
 </template>
+
 <script setup lang="ts">
 import { FolderNode } from '../../types/FolderNode'
 
@@ -25,6 +34,7 @@ defineProps<{
     selected: boolean
 }>()
 </script>
+
 <style>
 .folder-node {
     display: flex;

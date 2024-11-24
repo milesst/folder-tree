@@ -1,41 +1,47 @@
-<template lang="">
-    <div v-if="active" class="modal-container">
+<template>
+    <div
+        v-if="active"
+        class="modal-container"
+    >
         <div class="modal">
-            <header v-if="headerText" class="model-header">
-                {{ headerText }}
+            <header
+                v-if="headerText"
+                class="model-header"
+            >
+                <slot name="header">{{ headerText }}</slot>
             </header>
             <div class="model-content">
                 <slot />
             </div>
             <footer class="modal-footer">
                 <BaseButton
-                    @click="
-                        emit('select')
-                        active = false
-                    "
+                    @click="handleButtonPress('select')"
                     text="OK"
                 />
                 <BaseButton
-                    @click="
-                        emit('close')
-                        active = false
-                    "
+                    @click="handleButtonPress('close')"
                     text="Close"
                 />
             </footer>
         </div>
     </div>
 </template>
+
 <script setup lang="ts">
 import BaseButton from './BaseButton.vue'
 
 const emit = defineEmits(['select', 'close'])
 const active = defineModel()
+const handleButtonPress = (event: 'select' | 'close') => {
+    emit(event)
+    active.value = false
+}
 
 defineProps<{
     headerText?: string
 }>()
 </script>
+
 <style scoped>
 .modal-container {
     width: 100%;
@@ -56,7 +62,6 @@ defineProps<{
     border-radius: 10px;
     box-shadow: 0 0 10px hsl(0 0% 70%);
     background-color: white;
-
     display: flex;
     flex-direction: column;
 }
