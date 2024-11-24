@@ -4,24 +4,19 @@
         class="modal-container"
     >
         <div class="modal">
-            <header
-                v-if="headerText"
-                class="model-header"
-            >
+            <header class="model-header">
                 <slot name="header">{{ headerText }}</slot>
             </header>
             <div class="model-content">
                 <slot />
             </div>
             <footer class="modal-footer">
-                <BaseButton
-                    @click="handleButtonPress('select')"
-                    text="OK"
-                />
-                <BaseButton
-                    @click="handleButtonPress('close')"
-                    text="Close"
-                />
+                <slot name="footer">
+                    <BaseButton
+                        @click="handleButtonPress"
+                        text="OK"
+                    />
+                </slot>
             </footer>
         </div>
     </div>
@@ -30,16 +25,16 @@
 <script setup lang="ts">
 import BaseButton from './BaseButton.vue'
 
-const emit = defineEmits(['select', 'close'])
 const active = defineModel()
-const handleButtonPress = (event: 'select' | 'close') => {
-    emit(event)
-    active.value = false
-}
-
 defineProps<{
     headerText?: string
 }>()
+const emit = defineEmits(['press-ok'])
+
+const handleButtonPress = () => {
+    emit('press-ok')
+    active.value = false
+}
 </script>
 
 <style scoped>

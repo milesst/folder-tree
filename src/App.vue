@@ -74,6 +74,11 @@ const selectedFolderId = ref<string | null>(null)
 const openModal = () => {
     modalIsOpen.value = true
 }
+const handleButtonPress = (event: 'select' | 'close') => {
+    if (event === 'select')
+        selectedFolderId.value = selectedFolder.value?.id || null
+    modalIsOpen.value = false
+}
 </script>
 
 <template>
@@ -86,12 +91,21 @@ const openModal = () => {
     <Modal
         v-model="modalIsOpen"
         header-text="Folder Tree"
-        @select="selectedFolderId = selectedFolder?.id"
     >
         <FolderTree
             :data="folders"
             v-model="selectedFolder"
         />
+        <template #footer>
+            <BaseButton
+                @click="handleButtonPress('select')"
+                text="OK"
+            />
+            <BaseButton
+                @click="handleButtonPress('close')"
+                text="Close"
+            />
+        </template>
     </Modal>
     <p>
         {{
