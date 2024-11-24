@@ -46,7 +46,17 @@ const folders = ref<Folder[]>([
                     },
                     {
                         id: '8',
-                        name: 'Folder 8'
+                        name: 'Folder 8',
+                        children: [
+                            {
+                                id: '11',
+                                name: 'Folder 11'
+                            },
+                            {
+                                id: '12',
+                                name: 'Folder 12'
+                            }
+                        ]
                     }
                 ]
             }
