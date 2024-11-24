@@ -69,9 +69,10 @@ const handleButtonPress = () => {
     padding-top: 1rem;
     display: flex;
     justify-content: flex-end;
-}
-.modal-footer > *:not(:last-child) {
-    margin-right: 1rem;
+
+    & > *:not(:last-child) {
+        margin-right: 1rem;
+    }
 }
 .model-content {
     overflow-y: auto;

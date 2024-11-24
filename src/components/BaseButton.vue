@@ -15,9 +15,10 @@ defineProps<{
     border: none;
     color: white;
     padding: 1rem 1.5rem;
-}
-.base-button:hover {
-    background: hsl(202, 100%, 42%);
-    cursor: pointer;
+
+    &:hover {
+        background: hsl(202, 100%, 42%);
+        cursor: pointer;
+    }
 }
 </style>

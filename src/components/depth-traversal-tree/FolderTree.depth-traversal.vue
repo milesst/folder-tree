@@ -48,23 +48,22 @@ const updateFolderTreeNodes = (folders: Folder[]) => {
             stack.push(currentNode)
             currentNode.visited = true
         }
-        if (currentNode?.open)
-            for (let childNode of getChildrenNodes(currentNode)) {
-                let mappedNode: FolderNode
-                if (!(childNode as FolderNode).depth)
-                    mappedNode = {
-                        folder: childNode,
-                        parentNode: currentNode,
-                        depth: (currentNode?.depth || 0) + 1,
-                        childrenNodes: (childNode as Folder)?.children,
-                        open: true
-                    } as FolderNode
-                else mappedNode = childNode as FolderNode
-                if (!mappedNode.visited) {
-                    mappedNode.visited = true
-                    queue.push(mappedNode)
-                }
+        for (let childNode of getChildrenNodes(currentNode)) {
+            let mappedNode: FolderNode
+            if (!(childNode as FolderNode).depth)
+                mappedNode = {
+                    folder: childNode,
+                    parentNode: currentNode,
+                    depth: (currentNode?.depth || 0) + 1,
+                    childrenNodes: (childNode as Folder)?.children,
+                    open: false
+                } as FolderNode
+            else mappedNode = childNode as FolderNode
+            if (!mappedNode.visited) {
+                mappedNode.visited = true
+                queue.push(mappedNode)
             }
+        }
     }
     return stack
 }
@@ -81,13 +80,12 @@ const visibleNodes = computed(() => {
             continue
         }
         const parentNodeDepth = folderTreeNodes.value[i].depth
-        i++
-        while (
+        do {
+            i++
+        } while (
             i < folderTreeNodes.value.length &&
             folderTreeNodes.value[i].depth > parentNodeDepth
-        ) {
-            i++
-        }
+        )
     }
     return resultArray
 })

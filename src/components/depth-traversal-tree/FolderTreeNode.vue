@@ -35,21 +35,26 @@ defineProps<{
 const emit = defineEmits(['select', 'open'])
 </script>
 
-<style>
+<style lang="scss">
 .folder-node {
     display: flex;
     align-items: center;
     cursor: pointer;
+
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
 }
 .selected {
-    color: hsl(202, 100%, 62%);
+    color: $primary;
 }
 .folder-name {
     padding: 0.5rem 1rem 0.5rem;
     border-radius: 10px;
-}
-.folder-name:hover {
-    color: hsl(202, 100%, 62%);
+
+    &:hover {
+        color: $primary;
+    }
 }
 .folder-icon {
     width: 1rem;
@@ -60,15 +65,12 @@ const emit = defineEmits(['select', 'open'])
     margin-right: 0.5rem;
     user-select: none;
 }
-.folder-node:not(:last-child) {
-    margin-bottom: 1rem;
-}
 .folder-check {
     font-size: 0.7rem;
     height: 1rem;
     width: 1rem;
     color: white;
-    background-color: hsl(202, 100%, 62%);
+    background-color: $primary;
     border-radius: 200px;
     display: flex;
     align-items: center;
